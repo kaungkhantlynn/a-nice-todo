@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="main.css">
+  <title>Document</title>
+
+</head>
+
+<body>
+   <div id="app">
+     <div class="todo-container">
+        <header class="current-date">
+          <div class="date">
+            <span class="day-number">
+              {{ date.dayNum}}
+            </span>
+
+            <div class="month-year-wrapper">
+              <span class="month">{{date.month}}</span>
+              <span class="year">{{date.year}}</span>
+
+            </div>
+
+          </div>
+
+          <div class="today">
+            <span>{{date.dayName}}</span>
+          </div>
+
+        </header>
+
+        <main class="todo-list">
+          <ul class="tasks-container">
+            <li class="task-container" v-for="task in tasks" v-bind:class="{checked: !task.state}">
+              <p class="task">{{ task.name }}</p>
+              <input type="radio" v-on:click="checkTask"  name="" value="">
+            </li>
+
+          </ul>
+        </main>
+        <button class="add-task-btn" v-on:click="addTask"><span>+</span></button>
+
+
+
+     </div>
+
+   </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script type="text/javascript" src="moment.js">
+
+</script>
+
+<script type="text/javascript">
+new Vue({
+  el:'#app',
+  data: {
+    tasks: [],
+    task: '',
+    date:{
+      dayNum:'',
+      month: '',
+      year: '',
+      dayName: ''
+    }
+  },
+
+  created: function(){
+    this.getCurrentDay()
+  },
+  methods: {
+    getCurrentDay: function() {
+      const today = new Date()
+      let dayName = moment(today).format('dddd')
+
+      let[monthDay,year] = moment().format('ll').split(',')
+        let [ month, day ] = monthDay.split(' ')
+
+      month = month.toUpperCase()
+       dayName = dayName.toUpperCase()
+
+       this.date.dayNum = day
+       this.date.month = month
+       this.date.year = year
+       this.date.dayName = dayName
+
+    },
+
+    addTask: function() {
+      const inputTask = prompt('Add a task')
+      if (inputTask) {
+          var objTask = {
+            name: inputTask,
+            state: true
+          }
+          this.tasks.unshift(objTask)
+
+      }
+    },
+
+    checkTask: function(e){
+      const taskElement = e.target.parentNode
+      taskElement.classList.toggle('checked')
+    },
+
+
+
+
+  }
+})
+
+</script>
+</html>

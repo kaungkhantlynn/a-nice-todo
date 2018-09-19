@@ -1,0 +1,148 @@
+:root {
+  --body-bkg: #F0EFE9;
+  --todo-bkg: #FFFFFF;
+  --text-color: #5F6271;
+  --text-unselected-color: #d7d7dc;
+  --control-color: #50E3A4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.welcome-lading {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: var(--body-bkg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: var(--text-color);
+}
+
+.todo-container {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.18);
+  height: 24em; /*490px*/
+  padding: 2em;
+  position: relative;
+  width: 380px;
+}
+
+ul {
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+.todo-container {
+  background-color: var(--todo-bkg);
+}
+
+header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+header .date {
+  display: flex;
+  justify-content: space-between;
+  width: 22%;
+}
+
+
+header .date .day-number {
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1em;
+}
+
+header .date .month-year-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: .8em;
+}
+
+header .date .month-year-wrapper .month {
+  font-weight: bold;
+}
+
+header .today {
+  font-weight: 600;
+}
+
+/*TODO BODY*/
+main.todo-list {
+  margin-top: 1em;
+}
+
+main.todo-list .tasks-container {
+  overflow-y: auto;
+  max-height: 260px; /*Scroll uando muestra el scroll*/
+}
+
+main.todo-list .tasks-container li.task-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .7em;
+}
+
+li.task-container.checked p {
+  color: var(--text-unselected-color);
+  text-decoration: line-through;
+  transition: all 500ms ease-in-out;
+}
+
+li.task-container.checked input {
+  border-color: var(--control-color);
+  transition: all 500ms ease-in-out;
+}
+
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  border: 3px solid var(--text-unselected-color);
+  border-radius: 50%;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  outline: none;
+}
+
+button.add-task-btn {
+  background-color: var(--control-color);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  height: 90px;
+  width: 90px;
+  position: absolute;
+  bottom: -45px;
+  left: calc(190px - 45px);
+  outline: none;
+  transition: 200ms ease-in-out;
+}
+
+button.add-task-btn span {
+  font-size: 3em;
+  font-weight: bold;
+  color: #46BE8B;
+  font-family: none;
+}
+
+button.add-task-btn:active {
+  transform: scale(.9);
+}
